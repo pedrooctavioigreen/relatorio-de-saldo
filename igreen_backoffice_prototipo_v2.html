@@ -1,0 +1,301 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;font-size:13px;background:#f0f0f0;color:#222}
+.wrap{display:flex;flex-direction:column;border:1px solid #ddd;border-radius:8px;overflow:hidden}
+.demo-banner{background:#fffbe6;border-bottom:2px solid #f0c040;padding:8px 18px;display:flex;align-items:center;gap:10px;font-size:12px;color:#7a5c00}
+.demo-banner strong{font-weight:700;color:#5a4000}
+.inner-wrap{display:flex;height:620px;background:#fff}
+.sidebar{width:200px;min-width:200px;background:#fff;border-right:1px solid #e8e8e8;display:flex;flex-direction:column;overflow-y:auto}
+.sidebar-logo{padding:12px 14px 8px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between}
+.logo-ig{font-size:18px;font-weight:700;color:#1a8a2e;letter-spacing:-0.5px}
+.logo-sub{font-size:9px;color:#aaa;letter-spacing:1px;text-transform:uppercase}
+.sidebar-search{padding:8px 10px;border-bottom:1px solid #f0f0f0}
+.sidebar-search input{width:100%;border:1px solid #e0e0e0;border-radius:5px;padding:5px 8px;font-size:12px;color:#555;background:#fafafa;outline:none}
+.sidebar-item{padding:7px 14px;font-size:12px;color:#555;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+.sidebar-item:hover{background:#f5fdf5;color:#1a8a2e}
+.sidebar-item.active{background:#f0fbf0;color:#1a8a2e;font-weight:600}
+.sidebar-item.sub{padding-left:22px;color:#666;font-size:11.5px}
+.sidebar-item.sub:hover{color:#1a8a2e;background:#f5fdf5}
+.sidebar-group{padding:6px 14px 2px;font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:0.8px}
+.sidebar-chevron{font-size:10px;color:#bbb}
+.sidebar-footer{margin-top:auto;border-top:1px solid #f0f0f0;padding:10px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;background:#fafafa}
+.avatar{width:30px;height:30px;border-radius:50%;background:#1a8a2e;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;flex-shrink:0}
+.footer-name{font-size:11.5px;font-weight:600;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.footer-email{font-size:10px;color:#aaa;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:#f7f7f7}
+.topbar{background:#fff;border-bottom:1px solid #e8e8e8;display:flex;align-items:center;min-height:36px}
+.tab-top{padding:9px 16px;font-size:12px;color:#888;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tab-top.active{color:#1a8a2e;border-bottom:2px solid #1a8a2e;font-weight:600}
+.breadcrumb{padding:8px 20px 4px;font-size:12px;color:#aaa;background:#fff;border-bottom:1px solid #f0f0f0}
+.breadcrumb span{color:#1a8a2e;cursor:pointer}
+.tabs{display:flex;align-items:center;padding:0 16px;background:#fff;border-bottom:1px solid #e8e8e8;overflow-x:auto;gap:0}
+.tab{padding:9px 14px;font-size:12px;color:#888;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all 0.15s}
+.tab:hover{color:#1a8a2e}
+.tab.active{color:#1a8a2e;border-bottom:3px solid #1a8a2e;font-weight:600}
+.content{flex:1;overflow-y:auto;padding:18px 20px}
+.section-card{background:#fff;border-radius:8px;border:1px solid #ebebeb;padding:16px 18px;margin-bottom:14px}
+.section-title{font-size:14px;font-weight:700;color:#222;margin-bottom:14px}
+.form-field{display:flex;flex-direction:column;gap:3px}
+.form-label{font-size:11px;color:#999}
+.form-input{border:1px solid #e8e8e8;border-radius:5px;padding:6px 9px;font-size:12.5px;color:#333;background:#fafafa}
+.form-input.filled{background:#fff;color:#333}
+.action-bar{padding:10px 20px;background:#fff;border-top:1px solid #e8e8e8;display:flex;justify-content:flex-end;gap:10px}
+.btn{padding:7px 18px;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;border:none}
+.btn-cancel{background:#f0f0f0;color:#555}
+.btn-save{background:#1a8a2e;color:#fff}
+.panel-hidden{display:none}
+.saldo-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+.saldo-title{font-size:14px;font-weight:700;color:#222}
+.saldo-filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.filter-label{font-size:12px;color:#888}
+.filter-select{border:1px solid #e0e0e0;border-radius:5px;padding:5px 10px;font-size:12px;color:#444;background:#fafafa;cursor:pointer;outline:none}
+.ficticio-badge{display:inline-flex;align-items:center;gap:5px;background:#fff8e1;border:1px solid #ffe082;border-radius:5px;padding:4px 10px;font-size:11px;color:#7a5c00;font-weight:600;margin-bottom:14px}
+.saldo-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.summary-card{background:#f5fdf5;border:1px solid #c8eacf;border-radius:7px;padding:10px 14px;text-align:center}
+.summary-val{font-size:18px;font-weight:700;color:#1a8a2e}
+.summary-lbl{font-size:11px;color:#666;margin-top:2px}
+.saldo-table{width:100%;border-collapse:collapse;font-size:12.5px;table-layout:fixed}
+.saldo-table th{background:#f5fdf5;color:#1a8a2e;font-weight:700;padding:9px 12px;text-align:left;border-bottom:2px solid #c8eacf;white-space:nowrap}
+.saldo-table td{padding:8px 12px;border-bottom:1px solid #f0f0f0;color:#333}
+.saldo-table tr:last-child td{border-bottom:none}
+.saldo-table tr:hover td{background:#f9fef9}
+.empty-row td{color:#bbb;text-align:center;padding:28px;font-style:italic}
+</style>
+
+<div class="wrap">
+  <div class="demo-banner">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c8960c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span><strong>Protótipo visual — dados fictícios.</strong> Este ambiente simula a implementação da funcionalidade e não reflete informações reais de clientes ou do sistema.</span>
+  </div>
+
+  <div class="inner-wrap">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div>
+          <div class="logo-ig">i<span style="color:#5cb85c">g</span>reen</div>
+          <div class="logo-sub">energy</div>
+        </div>
+        <svg width="16" height="16" fill="none" stroke="#bbb" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+      <div class="sidebar-search"><input type="text" placeholder="⌘F  Buscar" /></div>
+      <div style="padding:6px 0">
+        <div class="sidebar-group">Licenciados</div>
+        <div class="sidebar-item sub">Relatórios <span class="sidebar-chevron">›</span></div>
+      </div>
+      <div style="padding:6px 0">
+        <div class="sidebar-item" style="font-weight:700;color:#222;font-size:13px"><span>🌿 Green</span><span class="sidebar-chevron" style="color:#555">∨</span></div>
+        <div class="sidebar-item sub active">Clientes Green</div>
+        <div class="sidebar-item sub">Contratos <span class="sidebar-chevron">›</span></div>
+        <div class="sidebar-item sub">Renegociação de clientes</div>
+        <div class="sidebar-item sub">Recebíveis Clientes</div>
+        <div class="sidebar-item sub">APIs <span class="sidebar-chevron">›</span></div>
+      </div>
+      <div style="padding:6px 0">
+        <div class="sidebar-item"><span>☀️ Solar</span><span class="sidebar-chevron">›</span></div>
+        <div class="sidebar-item"><span>📞 Telecom</span><span class="sidebar-chevron">›</span></div>
+        <div class="sidebar-item"><span>🌐 Internacional</span><span class="sidebar-chevron">›</span></div>
+      </div>
+      <div class="sidebar-footer">
+        <div class="avatar">PO</div>
+        <div style="overflow:hidden">
+          <div class="footer-name">Pedro Octávio Dias Pe...</div>
+          <div class="footer-email">pedro.octavio@igreenenergy...</div>
+        </div>
+        <span style="font-size:14px;color:#bbb;margin-left:auto">›</span>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="topbar">
+        <div class="tab-top">Home</div>
+        <div class="tab-top active">1474545 – Clien...</div>
+      </div>
+      <div class="breadcrumb">Início / Clientes Green / <span>1474545</span> / <span>Editar</span></div>
+
+      <div class="tabs">
+        <div class="tab active" onclick="showTab('cliente',this)">Cliente</div>
+        <div class="tab" onclick="showTab('pj',this)">Pessoa Jurídica</div>
+        <div class="tab" onclick="showTab('x',this)">Dados Telecom</div>
+        <div class="tab" onclick="showTab('x',this)">Bônus Telecom</div>
+        <div class="tab" onclick="showTab('x',this)">Conta Energia</div>
+        <div class="tab" onclick="showTab('x',this)">Contrato</div>
+        <div class="tab" onclick="showTab('x',this)">Devolutivas</div>
+        <div class="tab" onclick="showTab('x',this)">Assinaturas</div>
+        <div class="tab" onclick="showTab('x',this)">Documentos</div>
+        <div class="tab" onclick="showTab('x',this)">Histórico de Alterações</div>
+        <div class="tab" onclick="showTab('x',this)">Jornada</div>
+        <div class="tab" onclick="showTab('saldo',this)" style="color:#1a8a2e;font-weight:700">✦ Relatório de Saldo</div>
+      </div>
+
+      <div class="content">
+
+        <div id="panel-cliente">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+            <div class="section-card">
+              <div class="section-title">Informações básicas</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div class="form-field"><div class="form-label">Código</div><div class="form-input filled">1474545</div></div>
+                <div class="form-field"><div class="form-label">CPF *</div><div class="form-input">024.***.**1-90</div></div>
+                <div class="form-field"><div class="form-label">Nome *</div><div class="form-input filled">Fernanda Oliveira Souza</div></div>
+                <div class="form-field"><div class="form-label">E-mail *</div><div class="form-input filled">fernanda.souza@email.com</div></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                  <div class="form-field"><div class="form-label">Celular *</div><div class="form-input filled">(11) 99821-4477</div></div>
+                  <div class="form-field"><div class="form-label">Celular secundário</div><div class="form-input"></div></div>
+                </div>
+                <div class="form-field"><div class="form-label">Profissão *</div><div class="form-input filled">Professora</div></div>
+              </div>
+            </div>
+            <div class="section-card">
+              <div class="section-title">Documentos pessoais</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div class="form-field"><div class="form-label">RG *</div><div class="form-input filled">42.381.906-7</div></div>
+                <div class="form-field"><div class="form-label">Órgão emissor *</div><div class="form-input filled">SSP-SP</div></div>
+                <div class="form-field"><div class="form-label">Data Nascimento *</div><div class="form-input filled">14/03/1985</div></div>
+                <div class="form-field"><div class="form-label">Estado Civil</div><div class="form-input filled">Casada ∨</div></div>
+                <div class="form-field"><div class="form-label">Nacionalidade *</div><div class="form-input filled">Brasileira ∨</div></div>
+              </div>
+            </div>
+            <div class="section-card">
+              <div class="section-title">Endereço</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div class="form-field"><div class="form-label">CEP *</div><div class="form-input filled">13.085-710</div></div>
+                <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:8px">
+                  <div class="form-field"><div class="form-label">Endereço *</div><div class="form-input filled">Rua das Acácias</div></div>
+                  <div class="form-field"><div class="form-label">Número *</div><div class="form-input filled">342</div></div>
+                </div>
+                <div class="form-field"><div class="form-label">Bairro</div><div class="form-input filled">Jardim Primavera</div></div>
+                <div class="form-field"><div class="form-label">Complemento</div><div class="form-input filled">Apto 21</div></div>
+                <div class="form-field"><div class="form-label">Estado *</div><div class="form-input filled">São Paulo ∨</div></div>
+                <div class="form-field"><div class="form-label">Cidade *</div><div class="form-input filled">Campinas ∨</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="section-card" style="max-width:500px">
+            <div class="section-title">Dados internos</div>
+            <div style="display:grid;grid-template-columns:1fr 2fr auto;gap:8px;align-items:end">
+              <div class="form-field"><div class="form-label">ID *</div><div class="form-input filled">131559</div></div>
+              <div class="form-field"><div class="form-label">Nome Consultor</div><div class="form-input"></div></div>
+              <button class="btn btn-save" style="padding:6px 12px">🔍</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="panel-saldo" class="panel-hidden">
+          <div class="section-card">
+            <div class="ficticio-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c8960c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Dados fictícios — protótipo visual
+            </div>
+            <div class="saldo-header">
+              <div class="saldo-title">Relatório de Saldo de Energia</div>
+              <div class="saldo-filters">
+                <span class="filter-label">Período:</span>
+                <select class="filter-select" id="filter-ano" onchange="filterSaldo()">
+                  <option value="todos">Todos</option>
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="saldo-summary">
+              <div class="summary-card"><div class="summary-val" id="sum-injetada">—</div><div class="summary-lbl">Total injetado (kWh)</div></div>
+              <div class="summary-card"><div class="summary-val" id="sum-consumo">—</div><div class="summary-lbl">Total consumido (kWh)</div></div>
+              <div class="summary-card"><div class="summary-val" id="sum-compensado">—</div><div class="summary-lbl">Total compensado (kWh)</div></div>
+              <div class="summary-card"><div class="summary-val" id="sum-saldo" style="color:#e67e22">—</div><div class="summary-lbl">Saldo atual (kWh)</div></div>
+            </div>
+
+            <table class="saldo-table" id="saldo-table">
+              <thead>
+                <tr>
+                  <th style="width:18%">Mês Referência</th>
+                  <th style="width:22%">Energia Injetada (kWh)</th>
+                  <th style="width:20%">Consumo (kWh)</th>
+                  <th style="width:20%">Compensado (kWh)</th>
+                  <th style="width:20%">Saldo Atual (kWh)</th>
+                </tr>
+              </thead>
+              <tbody id="saldo-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="panel-outros" class="panel-hidden">
+          <div class="section-card" style="min-height:200px;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px">
+            Selecione uma aba para visualizar o conteúdo.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="action-bar">
+        <button class="btn btn-cancel">Cancelar</button>
+        <button class="btn btn-save">Salvar Alterações</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const allData = [
+  {mes:"2025-10", injetada:1563.67, consumo:0,       compensado:475,  saldo:1096},
+  {mes:"2025-11", injetada:157.86,  consumo:1764,    compensado:1252, saldo:466},
+  {mes:"2025-12", injetada:657.90,  consumo:291,     compensado:191,  saldo:276},
+  {mes:"2026-01", injetada:0,       consumo:1078,    compensado:0,    saldo:466},
+  {mes:"2026-02", injetada:0,       consumo:675,     compensado:190,  saldo:276},
+  {mes:"2026-03", injetada:0,       consumo:457,     compensado:0,    saldo:276},
+  {mes:"2026-04", injetada:0,       consumo:973,     compensado:0,    saldo:276},
+  {mes:"2026-05", injetada:1246,    consumo:1274,    compensado:882,  saldo:834},
+];
+
+function fmt(n){return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+
+function filterSaldo(){
+  const ano = document.getElementById('filter-ano').value;
+  const rows = allData.filter(d => ano === 'todos' || d.mes.startsWith(ano));
+  renderTable(rows);
+  renderSummary(rows);
+}
+
+function renderSummary(rows){
+  const ti  = rows.reduce((a,r)=>a+r.injetada,0);
+  const tc  = rows.reduce((a,r)=>a+r.consumo,0);
+  const tco = rows.reduce((a,r)=>a+r.compensado,0);
+  const lastSaldo = rows.length ? rows[rows.length-1].saldo : 0;
+  document.getElementById('sum-injetada').textContent   = Math.round(ti).toLocaleString('pt-BR');
+  document.getElementById('sum-consumo').textContent    = Math.round(tc).toLocaleString('pt-BR');
+  document.getElementById('sum-compensado').textContent = Math.round(tco).toLocaleString('pt-BR');
+  document.getElementById('sum-saldo').textContent      = Math.round(lastSaldo).toLocaleString('pt-BR');
+}
+
+function renderTable(rows){
+  const tbody = document.getElementById('saldo-body');
+  if(!rows.length){
+    tbody.innerHTML='<tr class="empty-row"><td colspan="5">Nenhum registro encontrado para o período selecionado.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map(d=>`
+    <tr>
+      <td style="font-weight:600">${d.mes}</td>
+      <td>${fmt(d.injetada)}</td>
+      <td>${fmt(d.consumo)}</td>
+      <td>${fmt(d.compensado)}</td>
+      <td style="font-weight:600;color:${d.saldo>0?'#1a8a2e':'#c0392b'}">${fmt(d.saldo)}</td>
+    </tr>
+  `).join('');
+}
+
+function showTab(name, el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-cliente').classList.add('panel-hidden');
+  document.getElementById('panel-saldo').classList.add('panel-hidden');
+  document.getElementById('panel-outros').classList.add('panel-hidden');
+  if(name==='cliente') document.getElementById('panel-cliente').classList.remove('panel-hidden');
+  else if(name==='saldo'){ document.getElementById('panel-saldo').classList.remove('panel-hidden'); filterSaldo(); }
+  else document.getElementById('panel-outros').classList.remove('panel-hidden');
+}
+
+renderTable(allData);
+renderSummary(allData);
+</script>
